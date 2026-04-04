@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+}
+
+#content {
+    padding: 40px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
