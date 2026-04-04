@@ -1,7 +1,7 @@
 body {
     margin: 0;
-    background: black;
-    color: #00ff00;
+    background: #5bd661c8;
+    color: #000000;
     font-family: monospace;
 }
 
@@ -9,10 +9,43 @@ body {
     padding: 40px;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
+.logo {
+    margin: 0 auto;
+    width: 40%;
+    height: auto;
+    display: block;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.search-bar input {
+    width: 60%;
+    max-width: 500px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #840000;
+    border-right: none;
+    outline: none;
+    background: #bababa;
+    color: #140000;
+    font-family: monospace;
+    border-radius: 8px 0 0 8px;
+}
+
+.search-bar button {
+    padding: 9px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #840000;
+    background: #969696;
+    color: #140000;
     cursor: pointer;
+    border-radius: 0 8px 8px 0;
 }
 
 #overlay {
