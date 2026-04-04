@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(to bottom, rgb(71, 146, 71), rgb(74, 115, 175));
     background-repeat: no-repeat;
-    background-size: 100vw 100vh;
+    background-size: 100% 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,15 +16,19 @@ body {
     margin: 10px auto;
     align-items: center;
     justify-content: center;
-    display: flex;
-    width: 50vw;
+    display: block;
+    width: 350px;
     text-align: center;
     gap: 20px;
 }
 
 #back {
     text-align: center;
-    margin: 20px 0 0 0;
+    margin: 20px auto;
+    display: block;
+    border: 2px solid;
+    border-radius: 10px;
+    width: 350px;
 }
 
 #back_button {
