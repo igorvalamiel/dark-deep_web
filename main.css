@@ -48,6 +48,58 @@ body {
     border-radius: 0 8px 8px 0;
 }
 
+#grupo_atalhos {
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 50vw;
+    text-align: center;
+    gap: 20px;
+}
+
+.external_links {
+    text-decoration: none;
+    color: #000000;
+}
+
+.atalho {
+    border: 3px solid #140000cc;
+    border-radius: 10px;
+    width: 80px;
+    height: auto;
+    max-height: 120px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.atalho:hover {
+    background-color: #77bbffb5;
+}
+
+#atalho_icon {
+    margin-top: 15px;
+    margin-left: 8px;
+    width: 60px;
+    height: auto;
+    display: block;
+}
+
+#user_img {
+    margin-top: 15px;
+    margin-left: 8px;
+    width: 50px;
+    height: auto;
+    margin-left: 1px;
+}
+
+#atalho_icon_txt {
+    margin: 0 10 auto;
+    font-size: 18px;
+    text-align: center;
+}
+
 #overlay {
     position: fixed;
     inset: 0;
