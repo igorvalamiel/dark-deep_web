@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho Redes - Deep Web e Dark Web</title>
+    <style>
+        /* ESTILIZAÇÃO CSS */
+        :root {
+            --cor-primaria: #0f0;
+            --fundo-escuro: rgba(0, 0, 0, 0.85);
+            --borda-verde: 1px solid #0f0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--cor-primaria);
+            background-color: black;
+            overflow-x: hidden;
+        }
+
+        /* Efeito Matrix no Fundo */
+        .matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* Cabeçalho e Menu */
+        .cabeçalho {
+            text-align: center;
+            padding: 20px 0;
+            background: var(--fundo-escuro);
+            border-bottom: var(--borda-verde);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .cabeçalho h1 {
+            margin-top: 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .caixa_clicavel {
+            color: var(--cor-primaria);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: var(--borda-verde);
+            background: rgba(0, 255, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .caixa_clicavel:hover {
+            background: var(--cor-primaria);
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        /* Estrutura de Conteúdo */
+        .conteudo-principal {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .caixa_central {
+            margin-bottom: 40px;
+        }
+
+        .caixa {
+            background: var(--fundo-escuro);
+            border: var(--borda-verde);
+            padding: 25px;
+            line-height: 1.6;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            text-align: justify;
+        }
+
+        .caixa h2 {
+            border-bottom: 1px dashed #0f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .caixa h3 {
+            margin-top: 25px;
+            color: #afffaf;
+        }
+
+        /* Espaços para Imagens */
+        .espaco-imagem {
+            position: relative;
+            width: fit-content; 
+            max-width: 90%;
+            margin: 30px auto;
+            min-height: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            border: 2px dashed var(--cor-primaria);
+            background: rgba(0, 255, 0, 0.05);
+            padding: 20px 40px; 
+            flex-wrap: wrap;
+        }
+
+        .espaco-imagem img {
+            display: block;
+            max-height: 300px;
+            max-width: 100%;
+            width: auto;
+            filter: drop-shadow(0 0 5px #0f0);
+        }
+
+        .credito-ia {
+            position: absolute;
+            right: 5px; /* Cola no lado direito da caixa pontilhada */
+            bottom: 10px; /* Cola na parte de baixo */
+            font-size: 9px; /* Bem pequenininho */
+            color: var(--cor-primaria);
+            opacity: 0.5; /* Deixa meio transparente para ficar discreto */
+            writing-mode: vertical-rl; /* Faz o texto ficar na vertical */
+            transform: rotate(180deg); /* Vira o texto para ler de baixo pra cima */
+            letter-spacing: 1px;
+            font-family: Arial, sans-serif; /* Muda a fonte se quiser tirar do estilo Matrix só pro aviso */
+        }
+
+        /* Rodapé */
+        .rodape {
+            text-align: center;
+            padding: 20px;
+            background: var(--fundo-escuro);
+            border-top: var(--borda-verde);
+            margin-top: 50px;
+        }
+
+        ul, ol { padding-left: 20px; }
+        .caixa a { color: #afffaf; text-decoration: underline; }
+        .caixa a:hover { color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <div class="matrix-container">
+        <canvas id="matrix"></canvas>
+    </div>
+    <div class="overlay"></div>
+
+    <div class="cabeçalho">
+        <h1><u>TRABALHO REDES: A PROFUNDIDADE DA WEB</u></h1>
+        <div class="menu">
+            <a href="#integrantes" class="caixa_clicavel">Integrantes</a>
+            <a href="#introducao" class="caixa_clicavel">Introdução</a>
+            <a href="#desenvolvimento" class="caixa_clicavel">A Rede Tor</a>
+            <a href="#protocolos" class="caixa_clicavel">Protocolos</a>
+            <a href="#outras-redes" class="caixa_clicavel">Outras Redes</a>
+            <a href="#conclusao" class="caixa_clicavel">Conclusão</a>
+            <a href="#referencias" class="caixa_clicavel">Referências</a>
+        </div>
+    </div>
+
+    <div class="conteudo-principal">
+
+        <div id="integrantes" class="caixa_central">
+            <div class="caixa">
+                <h2>Integrantes do Grupo</h2>
+                <ul>
+                    <li><strong>Igor Valamiel Peixoto Nunes</strong> - DRE: 124013709</li>
+                    <li><strong>Davi William Santos Araujo</strong> - DRE: 124104990</li>
+                    <li><strong>Juan Xavier Delafane Mateus</strong> - DRE: 124137943</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="introducao" class="caixa_central">
+            <div class="caixa">
+                <h2>1. Introdução: A arquitetura da Web e a indexação</h2>
+                <p>Com a evolução da tecnologia e da comunicação, recursos foram criados para facilitar a troca de informações. Hoje, a internet provê diversos serviços (WWW, DNS, e-mail) e é um dos principais meios de compartilhamento no mundo.</p>
+                <p>Entretanto, assim como um iceberg, a internet acessada facilmente pelos usuários do mundo todo não é, por completo, toda a rede de ligação entre os sistemas. Fazendo uma analogia, imagine que a internet é uma grande região. Um mapa da região conterá cidades e as estradas que as ligam. Mas podem existir cidades criadas após a confecção do mapa, não registradas, ou até rotas secretas exclusivas para determinados grupos.</p>
+                
+                <h3>1.1. Surface Web</h3>
+                <p>A Surface Web é a região registrada no mapa (indexada). Utilizando navegadores comuns, qualquer usuário pode chegar ao destino desejado sem autenticações específicas. Motores de busca (<em>crawlers</em>) rastreiam e catalogam essas páginas (ex: Google, YouTube).</p>
+
+                <h3>1.2. Deep Web</h3>
+                <p>Analogia das cidades e rotas que não estão presentes no mapa (não indexadas). Embora exijam autenticação ou ferramentas específicas, elas não são anônimas (o usuário precisa se identificar). Aqui se concentra a maioria das informações da internet, incluindo bancos de dados, formulários privados, documentos médicos e e-mails.</p>
+
+                <h3>1.3. Dark Web</h3>
+                <p>São as "rotas secretas". As páginas não possuem indexação e buscam o máximo de anonimato possível através de ferramentas específicas (como o Tor). É utilizada por <em>whistleblowers</em> (denunciantes), mas também abriga marketplaces de produtos ilegais e ambientes para hackers.</p>
+                
+                <div class="espaco-imagem">
+                    <img src="mapa_analogia_web.png" alt="analogia_web">
+                    <span class="credito-ia">Imagens geradas por IA</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="desenvolvimento" class="caixa_central">
+            <div class="caixa">
+                <h2>2. A tecnologia por trás da Dark Web: A rede Tor</h2>
+                <p>A rede Tor (The Onion Router) é um protocolo <em>open source</em> lançado em 2002 pela marinha americana para criar uma navegação descentralizada e anônima.</p>
+                
+                <h3>2.1. Nós da Rede (Nodes/Relays)</h3>
+                <p>O Tor baseia-se em usuários voluntários que oferecem seus sistemas para servirem como nós:</p>
+                <ul>
+                    <li><strong>Entry nodes (nós de entrada):</strong> Conectam-se diretamente à máquina do usuário.</li>
+                    <li><strong>Middle nodes (nós de meio):</strong> Percorrem o caminho, descriptografando ou criptografando dados. Causam lentidão no acesso e não garantem segurança contra nós corrompidos.</li>
+                    <li><strong>Exit nodes (nós de saída):</strong> Conectam-se à máquina de destino. <em>Atenção:</em> A navegação entre o exit node e o destino final não é criptografada, o que pode expor o usuário.</li>
+                </ul>
+
+                <h3>2.2. Roteamento em Cebola (Onion Routing)</h3>
+                <p>O navegador Tor conecta-se a um diretório que aponta o caminho através de vários <em>Nodes</em>. A mensagem é enviada com <em>n</em> chaves (camadas de cebola). Cada nó remove apenas uma camada e conhece apenas a origem imediata e o próximo destino. Se interceptado, o invasor obtém dados insuficientes para descobrir a origem ou ler a mensagem.</p>
+
+                <h3>2.3. Boas práticas de segurança</h3>
+                <p>Recomenda-se o uso de uma <em>Sandbox</em>, VPN, Firewalls e outras ferramentas para evitar que malwares acessem áreas críticas do sistema.</p>
+                
+                <div class="espaco-imagem">
+                    <img src="tor_image.png" alt="Tor image">
+                    <span class="credito-ia">Imagens geradas por IA</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="protocolos" class="caixa_central">
+            <div class="caixa">
+                <h2>3. Protocolos e Resolução de Nomes na Dark Web</h2>
+                
+                <h3>3.1. Hidden Services (Serviços Ocultos)</h3>
+                <p>Como o Tor originalmente não é anônimo de ponta-a-ponta (devido aos nós de saída), foram criados os Hidden Services. O servidor se "esconde" atrás da rede Tor, usando conexões intermediárias para que cliente e servidor interajam sem se conhecerem.</p>
+                
+                <h3>3.2. Conexão Ponta-a-Ponta (End-to-End)</h3>
+                <p>O processo técnico ocorre da seguinte maneira:</p>
+                <ol>
+                    <li>O servidor escolhe nós aleatórios para serem seus <strong>Pontos de Introdução (PIs)</strong>.</li>
+                    <li>É criada uma <em>Hidden Service Description</em> (contendo a chave pública e IPs dos PIs), postada em uma <em>Distributed Hash Table</em>.</li>
+                    <li>A chave para resolver isso é o endereço <strong>.onion</strong>.</li>
+                    <li>O cliente usa o endereço .onion para achar os PIs. Ele então cria um <strong>Random Point (RP)</strong> (Ponto de Encontro) e envia uma <em>one-time password</em> ao PI, que repassa ao servidor.</li>
+                    <li>Se o servidor aceita, conecta-se ao RP usando a mesma senha, formando um túnel totalmente anônimo e protegido.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="outras-redes" class="caixa_central">
+            <div class="caixa">
+                <h2>4. Outras Redes Obscuras</h2>
+                <p>Embora o Tor seja o mais famoso, há alternativas com diferentes funcionamentos:</p>
+                
+                <h3>4.1. I2P (Invisible Internet Project)</h3>
+                <p>Rede descentralizada P2P, criptografada de ponta-a-ponta. Funciona como uma darknet fechada (tráfego interno), usando túneis virtuais unidirecionais. Suporta BitTorrent, e-mail e <em>eepsites</em>.</p>
+                
+                <h3>4.2. FreeNet (Hyphanet)</h3>
+                <p>Projetada para garantir liberdade de expressão e resistência à censura. Funciona como um proxy de cache distribuído, usando o disco dos usuários (data store) para armazenar fragmentos anonimamente. Possui um "modo darknet" apenas para usuários de confiança.</p>
+
+                <h3>4.3. Lokinet</h3>
+                <p>Usa Onion Routing, mas opera como um roteador de rede completo, não limitando-se apenas a um navegador. Com cerca de 1.700 nós e incentivada por criptomoedas, suporta o app de mensagens Session. Seus endereços usam <code>.loki</code> e protegem contra vigilância e ataques de temporização.</p>
+
+                <div class="espaco-imagem">
+                    <div><img src="I2P_logo.png" alt="logo i2p"></div>
+                    <div><img src="Freenet_logo.png" alt="logo freenet"></div>
+                    <div><img src="lokinet_logo.png" alt="logo lokinet"></div>
+                    <span class="credito-ia">Imagens geradas por IA</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="conclusao" class="caixa_central">
+            <div class="caixa">
+                <h2>5. Conclusão</h2>
+                <p>A Web que a maioria acessa é apenas uma pequena fração do todo. Áreas não indexadas frequentemente servem apenas a necessidades cruciais de privacidade. Porém, existem setores da Dark Web que requerem cautela extrema, onde ocorrem atividades ilegais sob a proteção de tecnologias criadas exatamente para dificultar o rastreamento.</p>
+                <p>Por fim, podemos traçar um paralelo interessante entre o anonimato digital e o <strong>Princípio da Incerteza de Heisenberg</strong> da física quântica. Assim como não podemos determinar simultaneamente a posição e a velocidade de uma partícula, na internet atual, quando se busca anonimato extremo, a consequência é a perda de velocidade (atraso de resposta). Inversamente, quando há necessidade de alta velocidade na rede, a privacidade é drasticamente reduzida.</p>
+            </div>
+        </div>
+
+        <div id="referencias" class="caixa_central">
+            <div class="caixa">
+                <h2>Referências</h2>
+                <ul>
+                    <li>Appelbaum, J. and Muffett, A. (2015). The ".onion" Special-Use Domain Name. RFC 7686.</li>
+                    <li>Biryukov, A., Pustogarov, I., and Weinmann, R.-P. (2013). Trawling for tor hidden services: Detection, measurement, deanonymization. pages 80-94.</li>
+                    <li>Computerphile (2014). How TOR works / TOR hidden services. Palestrante: Sean Heelan.</li>
+                    <li>Dingledine, R., Mathewson, N., and Syverson, P. (2004). Tor: The Second-Generation onion router. In 13th USENIX Security Symposium.</li>
+                    <li>Grupo de Teleinformática e Automação - UFRJ (2012). Anonimato - freenet.</li>
+                    <li>Hatta, M. (2020). Deep web, dark web, dark net. Annals of Business Administrative Science.</li>
+                    <li>IBM Technology (2023). How google search works. Apresentado por Jeff Crume.</li>
+                    <li>Khare, R., An, Y., and Song, I.-Y. (2010). Understanding deep web search interfaces: a survey.</li>
+                    <li>Rob Braxman Tech (2023). The hidden networks: Onion routing, tor, lokinet, i2p, freenet.</li>
+                    <li>Projetos Oficiais: Tor Project, I2P Project, Hyphanet Project.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="rodape">
+        <h3><u>DIREITOS RESERVADOS AO GRUPO</u></h3>
+        <p>Disciplina de Redes I</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            // Fundo semi-transparente para o rastro das letras
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        // Ajustar redimensionamento de tela
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
