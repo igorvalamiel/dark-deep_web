@@ -206,17 +206,19 @@
         <div id="introducao" class="caixa_central">
             <div class="caixa">
                 <h2>1. Introdução: A arquitetura da Web e a indexação</h2>
-                <p>Com a evolução da tecnologia e da comunicação, recursos foram criados para facilitar a troca de informações. Hoje, a internet provê diversos serviços (WWW, DNS, e-mail) e é um dos principais meios de compartilhamento no mundo.</p>
-                <p>Entretanto, assim como um iceberg, a internet acessada facilmente pelos usuários do mundo todo não é, por completo, toda a rede de ligação entre os sistemas. Fazendo uma analogia, imagine que a internet é uma grande região. Um mapa da região conterá cidades e as estradas que as ligam. Mas podem existir cidades criadas após a confecção do mapa, não registradas, ou até rotas secretas exclusivas para determinados grupos.</p>
-                
+                <p>Com a evolução da tecnologia e da comunicação, recursos foram criados para facilitar a troca de informações entre pessoas e, com o tempo, isso foi se globalizando. Hoje, existe a internet, que provê diversos tipos de serviços e é um dos principais (se não o principal) meios de compartilhamento no mundo atual. Dentre esses serviços, temos a WWW (World Wide Web), DNS, e-mail, entre outros.</p>
+                <p>Entretanto, assim como um iceberg, a internet acessada facilmente pelos usuários do mundo todo não é, por completo, toda a rede de ligação entre os sistemas. Fazendo uma analogia, imagine que a internet é uma grande região.</p>
+                <p>Um mapa da região conterá cidades e as estradas que as ligam, e todos que tiverem esse guia conseguirão transitar facilmente pela região (chamamos, em redes, de parte indexada da Web). Entretanto, podem existir cidades que foram criadas após a confecção do mapa, ou que simplesmente não foram registradas e, por isso, não conseguem ser acessadas apenas olhando para o mapa (na realidade da internet, consideramos essas como a porção não indexada).</p>
+                <p>Além disso, suponhamos também que existam rotas secretas, às quais apenas integrantes de um grupo específico têm acesso, a como chegar nas cidades por caminhos desconhecidos. Mais tecnicamente, podemos dividir a Web em três principais grupos:</p>
+
                 <h3>1.1. Surface Web</h3>
-                <p>A Surface Web é a região registrada no mapa (indexada). Utilizando navegadores comuns, qualquer usuário pode chegar ao destino desejado sem autenticações específicas. Motores de busca (<em>crawlers</em>) rastreiam e catalogam essas páginas (ex: Google, YouTube).</p>
+                <p>A Surface Web (ou superfície da Web) é basicamente toda a região registrada no mapa, ou seja, indexada na Web. Utilizando browsers (navegadores), qualquer usuário pode chegar ao destino desejado, sem precisar usar ferramentas ou autenticações específicas. Exemplos de uso da Surface Web são o acesso ao Google e ao YouTube, pois crawlers (motores de busca) rastreiam e catalogam essas páginas, fazendo com que elas possam ser encontradas.</p>
 
                 <h3>1.2. Deep Web</h3>
-                <p>Analogia das cidades e rotas que não estão presentes no mapa (não indexadas). Embora exijam autenticação ou ferramentas específicas, elas não são anônimas (o usuário precisa se identificar). Aqui se concentra a maioria das informações da internet, incluindo bancos de dados, formulários privados, documentos médicos e e-mails.</p>
+                <p>A Deep Web (ou Web profunda) é a analogia das cidades e rotas que não estão presentes no mapa e não podem ser acessadas apenas com ele como ferramenta, ou seja, são não indexadas. Ainda que não seja possível acessar essas áreas da Web sem autenticação ou ferramentas específicas, elas não são anônimas (pois para acessá-las, o usuário precisa se identificar). A maioria das informações da internet está concentrada na Deep Web, em geral, pois é onde ficam os dados que não são de acesso público, como conteúdos protegidos por senha, formulários privados, documentos médicos, documentos legais, etc. Um exemplo de uma página da Deep Web são os emails: quando um email é enviado, ele existe na Web, mas não é possível pesquisar algo num navegador para encontrá-lo, você precisa estar conectado numa conta específica para acessá-lo.</p>
 
                 <h3>1.3. Dark Web</h3>
-                <p>São as "rotas secretas". As páginas não possuem indexação e buscam o máximo de anonimato possível através de ferramentas específicas (como o Tor). É utilizada por <em>whistleblowers</em> (denunciantes), mas também abriga marketplaces de produtos ilegais e ambientes para hackers.</p>
+                <p>A Dark Web (ou Web obscura) é a parte da analogia que fala sobre as rotas secretas. As páginas da Dark Web também não possuem indexação, mas, além disso, procuram anonimato o máximo possível. Para isso, usam de ferramentas específicas (como o Tor, que explicaremos melhor adiante) para acessar páginas. Exemplos de uso da Dark Web são para whistleblowers (pessoas internas a uma instituição que fazem denúncias anônimas), marketplaces de produtos ilegais (drogas, contrabando, etc) e ambiente de troca entre hackers (que compartilham hacks, exploits, malwares, credenciais roubadas, entre outros). Acessar a Dark Web requer muito cuidado, pois pode expor a máquina a malwares e compartilhar sem permissão informações pessoais do usuário.</p>
                 
                 <div class="espaco-imagem">
                     <img src="mapa_analogia_web.png" alt="analogia_web">
@@ -228,21 +230,31 @@
         <div id="desenvolvimento" class="caixa_central">
             <div class="caixa">
                 <h2>2. A tecnologia por trás da Dark Web: A rede Tor</h2>
-                <p>A rede Tor (The Onion Router) é um protocolo <em>open source</em> lançado em 2002 pela marinha americana para criar uma navegação descentralizada e anônima.</p>
+                <p>A rede Tor, ou The Onion Router, é um protocolo open source (de código aberto), lançado em 2002 e criado pela marinha americana, originalmente com o objetivo de ser uma forma descentralizada e anônima de navegar pela internet, sem que fosse possível rastrear o caminho percorrido de uma máquina a outra durante uma sessão. Explicaremos, a seguir, o funcionamento do Tor:</p>
                 
                 <h3>2.1. Nós da Rede (Nodes/Relays)</h3>
-                <p>O Tor baseia-se em usuários voluntários que oferecem seus sistemas para servirem como nós:</p>
+                <p>A rede Tor tem como base para seu funcionamento um grupo de usuários voluntários que oferecem seus sistemas para servirem como nós dessa rede. Assim, os nós do Tor se dividem em:</p>
                 <ul>
-                    <li><strong>Entry nodes (nós de entrada):</strong> Conectam-se diretamente à máquina do usuário.</li>
-                    <li><strong>Middle nodes (nós de meio):</strong> Percorrem o caminho, descriptografando ou criptografando dados. Causam lentidão no acesso e não garantem segurança contra nós corrompidos.</li>
-                    <li><strong>Exit nodes (nós de saída):</strong> Conectam-se à máquina de destino. <em>Atenção:</em> A navegação entre o exit node e o destino final não é criptografada, o que pode expor o usuário.</li>
+                    <li><strong>Entry nodes (nós de entrada):</strong> Os nós de entrada são os que se conectam diretamente com a máquina do usuário.</li>
+                    <li><strong>Middle nodes (nós de meio):</strong> Os nós de meio são os que percorrem o caminho para chegar ao destino final, descriptografando (ida) ou criptografando (volta) os dados a cada sessão.</li>
+                    <ul>
+                        <li>OBS: Embora o anonimato nesse caso seja uma vantagem, o tempo de acesso se torna mais lento devido a esse processo, o que é uma desvantagem.</li>
+                        <li>OBS2: Os processos de criptografia entre os middle nodes não garantem que não haverá nós corrompidos no meio do caminho, nem que eles serão seguros.</li>
+                    </ul>
+                    <li><strong>Exit nodes (nós de saída):</strong> Os nós de saída são os que se conectam diretamente com a máquina de destino da busca.</li>
+                    <ul>
+                        <li>OBS: A navegação pela rede Tor não é criptografada ponta a ponta (end-to-end), pois a sessão entre os exit nodes e a máquina destino não é criptografada, ou seja, não há garantia de que o Tor não irá expor o usuário.</li>
+                    </ul>
                 </ul>
 
                 <h3>2.2. Roteamento em Cebola (Onion Routing)</h3>
-                <p>O navegador Tor conecta-se a um diretório que aponta o caminho através de vários <em>Nodes</em>. A mensagem é enviada com <em>n</em> chaves (camadas de cebola). Cada nó remove apenas uma camada e conhece apenas a origem imediata e o próximo destino. Se interceptado, o invasor obtém dados insuficientes para descobrir a origem ou ler a mensagem.</p>
+                <p>Para acessar a Dark Web, o usuário precisa instalar um software Tor (um navegador). Esse browser conecta automaticamente a máquina a um diretório, que conhece o endereço de diversos Nodes do Tor e suas chaves de criptografia. Então, ele aponta ao usuário para qual endereço ele deve seguir e cria uma sessão criptografada entre o navegador e o nó de entrada.</p>
+                <p>O usuário envia a esse endereço uma mensagem encriptografada com n chaves, como se fossem n camadas de segurança (por isso se associa às camadas das cebolas). O Entry node possui apenas 3 informações: a chave da camada mais externa de criptografia, o endereço de onde a mensagem veio e o endereço para onde ela deve ser enviada. Dessa forma, ela passará a um Middle Node, que contém a segunda chave de criptografia, e ambos os endereços de chegada e saída. Isso se repete por n nós, cada um quebrando uma camada de criptografia, até que, no Exit Node, o dado chegue “clear” (sem codificação do Tor) para o destino.</p>
+                <p>O retorno da mensagem é similar, entretanto, ao invés de quebrar a camada de criptografia, eles a criam, de forma que somente a máquina do usuário (que possui todas as n chaves), consegue resolver e obter a mensagem.</p>
+                <p>Dessa forma, caso uma sessão seja interceptada no meio do caminho, o invasor conseguirá apenas 3 informações: um endereço de onde a mensagem veio, um para onde ela foi e uma mensagem codificada. Não conseguindo assim, saber nem quem é o usuário, nem qual a mensagem está sendo enviada.</p>
 
                 <h3>2.3. Boas práticas de segurança</h3>
-                <p>Recomenda-se o uso de uma <em>Sandbox</em>, VPN, Firewalls e outras ferramentas para evitar que malwares acessem áreas críticas do sistema.</p>
+                <p>Para melhor segurança ao acessar a Dark Web, recomenda-se o uso de uma Sandbox (partição da máquina especialmente protegida para, caso o sistema seja infectado, o malware não consiga ultrapassar essa área), de VPN, de Firewalls e de outras ferramentas de segurança.</p>
                 
                 <div class="espaco-imagem">
                     <img src="tor_image.png" alt="Tor image">
@@ -256,33 +268,31 @@
                 <h2>3. Protocolos e Resolução de Nomes na Dark Web</h2>
                 
                 <h3>3.1. Hidden Services (Serviços Ocultos)</h3>
-                <p>Como o Tor originalmente não é anônimo de ponta-a-ponta (devido aos nós de saída), foram criados os Hidden Services. O servidor se "esconde" atrás da rede Tor, usando conexões intermediárias para que cliente e servidor interajam sem se conhecerem.</p>
+                <p>Como visto anteriormente, a rede Tor originalmente não era anônima de ponta-a-ponta, pois os Exit Nodes se conectam com o servidor sem qualquer tipo de criptografia. Tendo isso em mente, os Hidden Services foram desenvolvidos usando o próprio Tor.</p>
+                <p>Ao invés de se conectar diretamente com um Exit Node do caminho na rede Tor, o servidor se “esconde” por trás de outros nós e ambos usuário e servidor usam de conexões intermediárias e senhas para se conectarem, sem que se conheçam.</p>
                 
                 <h3>3.2. Conexão Ponta-a-Ponta (End-to-End)</h3>
-                <p>O processo técnico ocorre da seguinte maneira:</p>
-                <ol>
-                    <li>O servidor escolhe nós aleatórios para serem seus <strong>Pontos de Introdução (PIs)</strong>.</li>
-                    <li>É criada uma <em>Hidden Service Description</em> (contendo a chave pública e IPs dos PIs), postada em uma <em>Distributed Hash Table</em>.</li>
-                    <li>A chave para resolver isso é o endereço <strong>.onion</strong>.</li>
-                    <li>O cliente usa o endereço .onion para achar os PIs. Ele então cria um <strong>Random Point (RP)</strong> (Ponto de Encontro) e envia uma <em>one-time password</em> ao PI, que repassa ao servidor.</li>
-                    <li>Se o servidor aceita, conecta-se ao RP usando a mesma senha, formando um túnel totalmente anônimo e protegido.</li>
-                </ol>
+                <p>Para que um Hidden Service funcione, o servidor escolhe aleatoriamente n nós e lhes envia mensagens pedindo para que eles sejam seus Pontos de Introdução (PIs). Os nós continuam realizando normalmente seus papéis como Entry, Middle ou Exit Nodes, mas ficam cientes de que estarão conectados a um servidor (ainda que não o conheçam).	</p>
+                <p>Ao se tornarem PIs, os nós criam uma Hidden Service Description, que inclui a chave pública do servidor, e os endereços IP de todos os PIs desse servidor. Essa descrição será postada em uma Distributed Hash Table, com o intuito de espalhar na rede Tor as informações de onde esse servidor se encontra. A senha para resolver essa Hash Table é o endereço .onion, que pode ser encontrado com buscadores específicos, em sites oficiais da organização na Surface Web ou em fóruns e comunidades.</p>
+                <p>Quando um usuário tenta acessar um Hidden Service, ele usa o endereço .onion para descobrir a Hidden Service Description do servidor e conhecer os endereços IP dos Pontos de Introdução. Um desses PIs é escolhido aleatoriamente para mediar a conexão entre o usuário e o servidor. Para isso, o cliente escolhe um nó da rede Tor de forma aleatória (random point - RP), que será usado como o ponto de encontro entre as pontas da conexão.</p>
+                <p>Então, através desse RP, o cliente envia uma one-time password para o Ponto de Introdução, que por sua vez a envia para o servidor, que pode escolher tentar a conexão ou não fazer nada. Caso o servidor decida se conectar, ele cria uma sessão com o RP, respondendo com a mesma one-time password (garantindo que apenas os dois estão na conversa). Após a confirmação, o RP continua fazendo parte da interação, mas apenas serve como “meio de comunicação”, sem conseguir ler as mensagens que estão sendo transmitidas por ele.</p>
+                <p>Dessa forma, um Hidden Service garante o anonimato ponta-a-ponta que um usuário da Dark Web possa querer, diferentemente do que acontece quando um servidor não se esconde na rede Tor. Protegendo, assim, tanto o usuário quanto o servidor.</p>
             </div>
         </div>
 
         <div id="outras-redes" class="caixa_central">
             <div class="caixa">
                 <h2>4. Outras Redes Obscuras</h2>
-                <p>Embora o Tor seja o mais famoso, há alternativas com diferentes funcionamentos:</p>
+                <p>Embora o Tor seja a rede mais conhecida e utilizada para acesso à Dark Web, ele não é o único. Existem outras redes com objetivos e funcionamentos distintos, cada uma com suas próprias características e casos de uso. </p>
                 
                 <h3>4.1. I2P (Invisible Internet Project)</h3>
-                <p>Rede descentralizada P2P, criptografada de ponta-a-ponta. Funciona como uma darknet fechada (tráfego interno), usando túneis virtuais unidirecionais. Suporta BitTorrent, e-mail e <em>eepsites</em>.</p>
+                <p>O I2P é uma rede descentralizada Point to Point (P2P), totalmente criptografada de ponta-a-ponta, projetada para oferecer anonimato e privacidade. Diferentemente do Tor, que frequentemente é usado para acessar a internet pública de forma anônima, o I2P funciona principalmente como uma darknet fechada — o tráfego permanece dentro da própria rede, usando “túneis virtuais” unidirecionais de entrada e saída. Dessa forma, observadores externos não conseguem visualizar o conteúdo, a origem ou o destino das mensagens. A rede suporta diversos serviços, como BitTorrent, e-mail e hospedagem de sites (chamados de eepsites).</p>
                 
                 <h3>4.2. FreeNet (Hyphanet)</h3>
-                <p>Projetada para garantir liberdade de expressão e resistência à censura. Funciona como um proxy de cache distribuído, usando o disco dos usuários (data store) para armazenar fragmentos anonimamente. Possui um "modo darknet" apenas para usuários de confiança.</p>
+                <p>A FreeNet, ou Hyphanet, é uma rede descentralizada, que foi projetada especificamente para garantir liberdade de expressão, anonimato e resistência à censura. Ela funciona como um proxy de cache criptografado e distribuído, no qual os usuários contribuem com parte de sua largura de banda e espaço em disco (chamado de data store) para armazenar pedaços de dados anonimamente. Assim como o I2P, não possui nós de saída para a internet pública. Um de seus maiores diferenciais é o modo darknet, que permite conexões exclusivas entre os usuários de confiança, tornando a rede extremamente difícil de ser detectada ou bloqueada.</p>
 
                 <h3>4.3. Lokinet</h3>
-                <p>Usa Onion Routing, mas opera como um roteador de rede completo, não limitando-se apenas a um navegador. Com cerca de 1.700 nós e incentivada por criptomoedas, suporta o app de mensagens Session. Seus endereços usam <code>.loki</code> e protegem contra vigilância e ataques de temporização.</p>
+                <p>A Lokinet é uma rede que também utiliza roteamento em cebola (Onion Routing), considerada por alguns usuários como uma alternativa mais eficiente que o Tor. Seu principal diferencial é funcionar como um roteador de rede completo (ao invés de se limitar a um navegador, ela roteia toda a conexão de internet da máquina, permitindo o uso de diversos protocolos além do HTTP). Sua infraestrutura é composta por cerca de 1.700 nós, mantidos por colaboradores que são incentivados por criptomoeda, e é a base do aplicativo de mensagens Session. Além disso, os sites dessa rede usam o endereço .loki e as comunicações ocorrem sem endereços IP, protegendo os usuários contra vigilância e ataques de temporização.</p>
 
                 <div class="espaco-imagem">
                     <div><img src="I2P_logo.png" alt="logo i2p"></div>
@@ -296,8 +306,9 @@
         <div id="conclusao" class="caixa_central">
             <div class="caixa">
                 <h2>5. Conclusão</h2>
-                <p>A Web que a maioria acessa é apenas uma pequena fração do todo. Áreas não indexadas frequentemente servem apenas a necessidades cruciais de privacidade. Porém, existem setores da Dark Web que requerem cautela extrema, onde ocorrem atividades ilegais sob a proteção de tecnologias criadas exatamente para dificultar o rastreamento.</p>
-                <p>Por fim, podemos traçar um paralelo interessante entre o anonimato digital e o <strong>Princípio da Incerteza de Heisenberg</strong> da física quântica. Assim como não podemos determinar simultaneamente a posição e a velocidade de uma partícula, na internet atual, quando se busca anonimato extremo, a consequência é a perda de velocidade (atraso de resposta). Inversamente, quando há necessidade de alta velocidade na rede, a privacidade é drasticamente reduzida.</p>
+                <p>Após esse estudo sobre a complexidade e profundidade da Web, percebe-se que a parte acessada pela maioria dos usuários de Internet no mundo é apenas uma pequena porção da sua verdadeira dimensão. Além disso, notou-se que não necessariamente algo é perigoso por não estar na Surface Web (pode apenas ser algo que necessita de privacidade, como documentos médicos, comunicações corporativas ou denúncias anônimas). </p>
+                <p>Entretanto, vimos também que existem na Web áreas que exigem muito cuidado, pois podem estar acompanhadas de malwares e usuários mal-intencionados. Partes da Dark Web são utilizadas para atividades ilegais, compartilhamento de informações confidenciais roubadas e outros fins sérios. As próprias tecnologias estudadas, como os Hidden Services e as redes alternativas ao Tor, foram projetadas justamente para dificultar o rastreamento dessas atividades. Logo, o acesso a essas áreas não deve ser feito de forma imprudente. </p>
+                <p>Por fim, uma comparação interessante de se fazer seria entre o que foi estudado e o Princípio da Incerteza de Heisenberg, que diz, na física quântica, que não é possível determinar simultaneamente com precisão a posição e a velocidade de uma partícula. Isso pode ter correlação com a Internet, pois, numa rede, quando se busca anonimato, o resultado é um atraso significativo no tempo de resposta entre as pontas da conexão. Entretanto, quando há necessidade de velocidade na rede, a privacidade é drasticamente reduzida.</p>
             </div>
         </div>
 
